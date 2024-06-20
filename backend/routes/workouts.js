@@ -1,34 +1,28 @@
 const express = require('express')
 const Paciente = require('../models/PacienteModel')
+const {
+    getPaciente,
+    getPacientes,
+    crearPaciente,
+    borrarPaciente
+} = require('../controllers/pacienteController')
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-    res.json({mssg: "GET ALL LOGINS"})
-})
+
+// Obtener todos los Pacientes
+router.get('/', getPacientes) //FUNCIONA
 
 
-//Obtener 1 login al peo
+// Obtener 1 Paciente
 
-router.get('/:id', (req,res) => {
-    res.json({mssg: "Obtenemos los datos del ql"})
-})
+router.get('/:id', getPaciente) //por arreglar
 
 // Añadir a un pacientes
-router.post('/', async (req, res) => {
-    const {nombre, rut, fecha_nacimiento, sexo, telefono } = req.body
-    try {
-        const paciente = await Paciente.create({nombre, rut, fecha_nacimiento, sexo, telefono})
-        res.status(200).json(paciente)
-    } catch (error) {
-        res.status(400).json({error: error.message})
-    }
-})
+router.post('/', crearPaciente) //Por arreglar
 
 // Borrar un paciente
-router.delete('/', (req,res) => {
-    res.json({mssg: "Paciente eliminado"})
-})
+router.delete('/:id', borrarPaciente) //FUNCIONA
 
 // Actualizar a un paciente
 router.patch('/', (req, res) => {

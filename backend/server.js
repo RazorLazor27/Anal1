@@ -24,7 +24,6 @@ app.use((req, res, next) => {
 
 
 app.use('/api/workouts',loginRoutes)
-process.env
 // Conectarse a la BD 
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {
