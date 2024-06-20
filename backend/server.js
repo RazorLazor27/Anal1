@@ -7,7 +7,7 @@ require('dotenv').config()
 const mongoose = require('mongoose')
 
 
-const loginRoutes = require('./routes/workouts')
+const loginRoutes = require('./routes/pacientes')
 
 
 // Crea la app express
@@ -23,7 +23,7 @@ app.use((req, res, next) => {
 })
 
 
-app.use('/api/workouts',loginRoutes)
+app.use('/api/pacientes',loginRoutes)
 // Conectarse a la BD 
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {

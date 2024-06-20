@@ -24,6 +24,14 @@ const Paciente = new Schema({
     telefono: {
         type: String,
         required: false
+    },
+    doctor_rut: {
+        type: String,
+        required: false
+    },
+    en_tratamiento: {
+        type: Boolean,
+        require: true
     }
 }, {timestamps: true})
 

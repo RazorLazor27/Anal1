@@ -4,7 +4,8 @@ const {
     getPaciente,
     getPacientes,
     crearPaciente,
-    borrarPaciente
+    borrarPaciente,
+    modificarPaciente
 } = require('../controllers/pacienteController')
 
 const router = express.Router();
@@ -13,9 +14,7 @@ const router = express.Router();
 // Obtener todos los Pacientes
 router.get('/', getPacientes) //FUNCIONA
 
-
 // Obtener 1 Paciente
-
 router.get('/:id', getPaciente) //por arreglar
 
 // Añadir a un pacientes
@@ -25,8 +24,6 @@ router.post('/', crearPaciente) //Por arreglar
 router.delete('/:id', borrarPaciente) //FUNCIONA
 
 // Actualizar a un paciente
-router.patch('/', (req, res) => {
-    res.json({mssg: "Paciente actualizado"})
-})
+router.patch('/:id', modificarPaciente)
 
 module.exports = router
