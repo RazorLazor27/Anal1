@@ -15,10 +15,10 @@ const router = express.Router();
 router.get('/', getPacientes) //FUNCIONA
 
 // Obtener 1 Paciente
-router.get('/:id', getPaciente) //por arreglar
+router.get('/:id', getPaciente) // Funciona
 
 // Añadir a un pacientes
-router.post('/', crearPaciente) //Por arreglar
+router.post('/', crearPaciente) // Funciona
 
 // Borrar un paciente
 router.delete('/:id', borrarPaciente) //FUNCIONA
