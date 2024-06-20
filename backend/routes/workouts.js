@@ -1,4 +1,5 @@
 const express = require('express')
+const Paciente = require('../models/PacienteModel')
 
 const router = express.Router();
 
@@ -14,8 +15,14 @@ router.get('/:id', (req,res) => {
 })
 
 // Añadir a un pacientes
-router.post('/', (req, res) => {
-    res.json({mssg: "ANADIR A ALGUIEN A LA BD"})
+router.post('/', async (req, res) => {
+    const {nombre, rut, fecha_nacimiento, sexo, telefono } = req.body
+    try {
+        const paciente = await Paciente.create({nombre, rut, fecha_nacimiento, sexo, telefono})
+        res.status(200).json(paciente)
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
 })
 
 // Borrar un paciente

@@ -1,6 +1,8 @@
 const express = require('express')
 require('dotenv').config()
 
+// console.log(process.env.MONGO_URI)
+
 // Conexion a la base de datos 
 const mongoose = require('mongoose')
 
@@ -22,12 +24,12 @@ app.use((req, res, next) => {
 
 
 app.use('/api/workouts',loginRoutes)
-
+process.env
 // Conectarse a la BD 
 mongoose.connect(process.env.MONGO_URI)
-    .then(( ) => {
+    .then(() => {
         app.listen(process.env.PORT, () => {
-            console.log("Escuchando en el puerto 4000");
+            console.log("Se conecto a la base de datos y ahora Escuchando en el puerto 4000");
         })
     })
     .catch((error) => {
