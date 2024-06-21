@@ -1,38 +1,35 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 const Pacientes = () => {
-
-    const [pacientes, setPacientes] = useState(null)
+    const [pacientes, setPacientes] = useState([]);
 
     useEffect(() => {
         const fetchPacientes = async () => {
             try {
-                const response = await fetch('http://localhost:4000/api/pacientes/');
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                const json = await response.json();
-                setPacientes(json);
+                const response = await axios.get('http://localhost:4000/api/pacientes/');
+                setPacientes(response.data); // Aquí accedemos a la propiedad data
             } catch (error) {
-                console.error('Error fetching pacientes:', error);
-                // Puedes manejar el error de otra manera (por ejemplo, mostrar un mensaje al usuario)
+                console.error("Error fetching pacientes:", error);
             }
         };
-    
+
         fetchPacientes();
     }, []);
 
     return (
         <div className="home">
             <div className="pacientes">
-                {pacientes && pacientes.map((paciente) => (
-                    <p key={paciente._id}>{paciente.nombre}</p>
-                ))}
+                {pacientes.length > 0 ? (
+                    pacientes.map((paciente) => (
+                        <p key={paciente._id}>{paciente.nombre}</p>
+                    ))
+                ) : (
+                    <p>No hay pacientes disponibles.</p>
+                )}
             </div>
         </div>
-    )
+    );
+};
 
-}
-
-
-export default Pacientes
+export default Pacientes;
